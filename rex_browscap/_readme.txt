@@ -2,9 +2,9 @@ h1. 1. Funktion _rex_get_browser()_ absichern
 
 Da die von diesem Addon zur Verfügung gestellte Funktionalität nicht zum Redaxo Core gehört, sollte die Verwendung der Funktion(en) für den Fall einer De-Installation/Aktivierung des Addons abgesichert werden.
 
-In den Kopfbereich jedes Templates, Moduls, Addons, oder wo auch immer @rex_get_browser()@ verwendet werden soll folgende (oder vergleichbare) Dummy Funktion einfügen:
+In den Kopfbereich jedes Templates, Moduls, Addons, oder wo auch immer @rex_get_browser()@ verwendet werden soll zur Sicherheit folgende (oder vergleichbare) Dummy Funktion einfügen:
 
-bc. if (!function_exists('rex_get_browser()')) {
+bc. if (!function_exists('rex_get_browser')) {
   function rex_get_browser() {
     echo 'RexBrowscap Addon nicht installiert!';
   }
