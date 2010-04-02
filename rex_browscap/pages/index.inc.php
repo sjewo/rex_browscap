@@ -38,7 +38,7 @@ $subpages = array (
     array ('help','Hilfe')
   );
 
-rex_title('RexBrowscap '.$REX['ADDON']['version'][$page], $subpages);
+rex_title('RexBrowscap <span class="addonversion">v. '.$REX['ADDON']['version'][$page].'</span>', $subpages);
 
 // SET DEFAULT PAGE / INCLUDE PAGE
 ////////////////////////////////////////////////////////////////////////////////
