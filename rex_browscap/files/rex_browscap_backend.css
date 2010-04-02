@@ -1,71 +1,65 @@
-.backendoverride {
-  font-size:100%;
-  margin:0;
-  padding:0 }
-.backendoverride h1 {
-  font-size:20px;
-  margin:0 0 8px 0;
-  padding:0 }
-.backendoverride h2 {
-  font-size:18px;
-  margin:7px 0;
-  padding:0 }
-.backendoverride h3 {
-  font-size:16px;
-  margin:6px 0;
-  padding:0 }
-.backendoverride h4 {
+/* REXBROWSCAP ADDON | REXDEV.DE |REDAXO BACKEND STYLES OVERRIDES */
+
+.rexbrowscap  {
+  padding:2px 8px 8px 8px;
+  }
+  
+.rexbrowscap p {
   font-size:12px;
-  margin:5px 0;
-  padding:0 }
-.backendoverride h5 {
-  font-size:10px;
-  margin:4px 0;
-  padding:0 }
-.backendoverride ul {
-  margin:0;
-  padding:2px 0 6px 10px; }
-.backendoverride ul li {
-  list-style-type:bullet;
-  margin:0;
-  padding:0; }
-.backendoverride cite {
+  }
+
+.rexbrowscap h1 {
+  font-size:16px;
+  border-bottom:1px solid #DFE9E9;
+  margin:2px 0 10px 0;
+  padding:0 0 2px 0;
+  }
+
+.rexbrowscap h2 {
+  font-size:14px;
+  margin:2px 0 10px 0;
+  padding:0;
+  }
+
+.rexbrowscap h3 {
+  font-size:13px;
+  margin:2px 0 10px 0;
+  padding:0;
+  }
+
+.rexbrowscap h4 {
+  font-size:12px;
+  margin:2px 0 10px 0;
+  padding:0;
+  }
+
+.rexbrowscap h5 {
+  font-size:11px;
+  margin:2px 0 10px 0;
+  padding:0;
+  }
+  
+.rexbrowscap cite,
+.rexbrowscap code,
+.rexbrowscap pre {
   color:blue;
-  font-size:10px;
   font-family:monospace;
-  font-style:normal; }
-.backendoverride pre {
+  font-style:normal; 
+  font-size:12px;
+  }
+
+.rexbrowscap pre {
   overflow:auto;
-  color:blue;
   border:1px dashed #C0C0C0;
   background:#FAF9F5;
-  font-size:12px;
-  margin:6px 4px 6px 0;
+  margin:2px 4px 8px 0;
   padding:8px;
-  font-family:monospace; }
-.backendoverride pre code {
-  color:blue;
-  border:0;
-  background:transparent;
-  font-size:12px;
-  margin:0;
-  padding:0;
-  font-family:monospace; }
-.backendoverride pre.plain {
-  color:black;
-  border:0;
-  background:transparent;
-  margin:0;
-  padding:0;
-  font-family:monospace; }
-.backendoverride hr {
+  }
+
+.rexbrowscap hr {
   height:1px;
   border:0;
   border-top:1px solid silver;
   margin:8px 0;
-  padding:0; }
-.backendoverride p.helpnav {
-  background:transparent;
-  margin:0;
   padding:0;
-  font-weight:bold; }
+  }
