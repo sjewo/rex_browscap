@@ -19,8 +19,8 @@ $func = rex_request('func', 'string');
 // CHAPTER DEFS ('CHAPTER PARAM' => array('TITLE','SOURCE','PARSEMODE'))
 ////////////////////////////////////////////////////////////////////////////////
 $chapterpages = array (
-''             => array('Addon Hilfe','_help.txt','textile'),
-'tickets'      => array('Addon Tickets','http://gn2-code.de/projects/rex_browscap/issues','jsopenwin')
+''             => array('Addon Readme','_readme.txt','textile'),
+'tickets'      => array('phpbrowscap Projektseite','http://code.google.com/p/phpbrowscap/','jsopenwin')
 );
 
 // BUILD CHAPTER NAVIGATION
@@ -76,7 +76,7 @@ echo '
 <div class="rex-addon-output">
   <h2 class="rex-hl2" style="font-size:1em">'.$chapternav.'</h2>
   <div class="rex-addon-content">
-    <div class= "backendoverride">
+    <div class= "rexbrowscap">
     '.$html.'
     </div>
   </div>
