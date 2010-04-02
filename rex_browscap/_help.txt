@@ -1,0 +1,63 @@
+
+h1. Installation und Konfiguration
+
+REXseo ist eine Erweiterung des REDAXO url_rewrite Addons mit einigen neuen Zusatzfeatures (benötigt zwingend PHP5):
+
+* Automatische/Custom <title> Tags
+* Keyword/Description Attributes (mit Vererbung + Standardwerten)
+* schöne URL-Struktur, Custom slugs
+
+Wenn url_rewrite schon installiert ist, muss das bestehende Addon deaktiviert und deinstalliert werden. Anschließend REXseo ins Addonverzeichnis laden, installieren und aktivieren. Die .htaccess im Wurzelverzeichnis anpassen:
+
+bc. #Enable rewriting
+RewriteEngine On
+RewriteBase /
+#Rewrite all requests to index.php
+RewriteCond %{REQUEST_URI}  !redaxo/.*
+RewriteCond %{REQUEST_URI}  !files/.*
+RewriteCond %{REQUEST_URI}  !sitemap.xml
+RewriteRule ^(.*)$ index.php?%{QUERY_STRING} [L]
+
+Im Verzeichnis /redaxo eine .htacess anlegen
+
+bc. RewriteEngine Off
+
+Den <head> Bereich des Templates anpassen/erweitern (die Punkte natürlich nicht mitkopieren):
+
+bc. <head>
+<base href="<?php echo $REX['SERVER']; ?>" />
+    …
+<title><?php echo rexseo::title(); ?></title>
+<meta name=”keywords” content="<?php echo rexseo::keywords(); ?>" />
+<meta name=”description” content="<?php echo rexseo::description(); ?>" />
+    …
+ </head>
+
+Wichtig!!: Unter REDAXO > System den $REX["SERVER"‘] eintragen. (die Haupturl der Seite, mit http:// und / am Ende) z.B. http://www.gn2-netwerk.de/, falls das REDAXO Demo-Template verwendet wird, können die bestehenden Description/Keywords-Zeilen gelöscht werden:
+
+bc.. $meta_beschreibung = $OOStartArticle->getValue("art_description");
+$meta_suchbegriffe = $OOStartArticle->getValue("art_keywords");
+
+if($this->getValue(“art_description”) != "")
+$meta_beschreibung = $this->getValue("art_description");
+
+if($this->getValue("art_keywords") != "")
+$meta_suchbegriffe = $this->getValue("art_keywords");
+
+p. Anschließend den REDAXO-Cache löschen (unter System). Titel und URLs können jetzt artikelspezifisch unter Metadaten/Sonstiges angepasst werden.
+
+h1. Vorschaubug in REDAXO 4.2.1 beheben
+
+bei REDAXO 4.2.1 funktioniert die Artikelvorschau aus dem Backend bei aktiviertem REXseo nicht
+
+in content.inc.php im Ordner /pages Zeile 578:
+
+bc. $listElements[] = '<a href="../'.$REX["FRONTEND_FILE"].'?article_id=' . $article_id . '&amp;clang=' . $clang . '" onclick="window.open(this.href); return false;" '. rex_tabindex() .'>' . $I18N->msg('show') . '</a>';
+
+ersetzen mit:
+
+bc. $listElements[] = '<a href="../'.rex_getUrl($article_id,$clang).'" onclick="window.open(this.href); return false;" '. rex_tabindex() .'>' . $I18N->msg('show') . '</a>';
+
+damit ist dieser Bug behoben.
+
+www.gn2-netwerk.de
