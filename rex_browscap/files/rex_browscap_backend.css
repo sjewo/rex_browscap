@@ -44,7 +44,7 @@
 .rexbrowscap pre {
   color:blue;
   font-family:monospace;
-  font-style:normal; 
+  font-style:normal;
   font-size:12px;
   }
 
@@ -54,6 +54,7 @@
   background:#FAF9F5;
   margin:2px 4px 8px 0;
   padding:8px;
+  line-height:12px;
   }
 
 .rexbrowscap hr {
@@ -63,3 +64,9 @@
   margin:8px 0;
   padding:0;
   }
+  
+span.addonversion
+{
+  font-size:10px;
+  color:silver;
+}
