@@ -2,31 +2,44 @@
 
 /**
  * RexBrowscap Addon
- * Based on http://code.google.com/p/phpbrowscap/
+ * Based on https://github.com/GaretJax/phpbrowscap/
  * @author st DOT jonathan AT gmail DOT com
  * @author rexdev.de
  * @package redaxo4.2
  * @version svn:$Id$
  */
 
- // ADDON IDENTIFIER
-$mypage = "rex_browscap";
-// UNIQUE ID
-$REX['ADDON']['rxid'][$mypage] = '714';
-// NAME SHOWN IN THE REDAXO MAIN MENU
-$REX['ADDON']['name'][$mypage] = 'RexBrowscap';
+// ADDON IDENTIFIER AUS ORDNERNAMEN ABLEITEN
+////////////////////////////////////////////////////////////////////////////////
+$mypage = 'rex_browscap';
+$myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/';
 
-$REX['ADDON']['version'][$mypage] = '0.1';
-$REX['ADDON']['author'][$mypage] = 'rexdev.de';
+// ADDON VERSION
+////////////////////////////////////////////////////////////////////////////////
+$Revision = '';
+$REX['ADDON'][$mypage]['VERSION'] = array
+(
+'VERSION'      => 0,
+'MINORVERSION' => 1,
+'SUBVERSION'   => preg_replace('/[^0-9]/','',"$Revision$")
+);
+
+$REX['ADDON']['rxid'][$mypage]        = '714';
+$REX['ADDON']['name'][$mypage]        = 'RexBrowscap';
+$REX['ADDON']['version'][$mypage]     = implode('.', $REX['ADDON'][$mypage]['VERSION']);
+$REX['ADDON']['author'][$mypage]      = 'rexdev.de';
 $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
 
-// CACHE LOCATION
+
+// SETTINGS
 $REX['ADDON']['rex_browscap']['cache'] = $REX['HTDOCS_PATH'].'files/addons/rex_browscap/cache';
+$REX['ADDON']['rex_browscap']['silent'] = true;
+$REX['ADDON']['rex_browscap']['userAgent'] = 'Redaxo Addon "rex_browsecap" - version '.$REX['ADDON']['version'][$mypage];
+
 
 // --- DYN
-$REX['ADDON']['rex_browscap']['foo'] = 'fooval';
-$REX['ADDON']['rex_browscap']['bar'] = 'barval';
 // --- /DYN
+
 
 // REQUIRE LIBS BY PHP VERSION
 ////////////////////////////////////////////////////////////////////////////////

@@ -2,8 +2,8 @@
 
 /**
  * RexBrowscap Addon
- * Based on http://code.google.com/p/phpbrowscap/
- * @author st DOT jonathan AT gmail DOT com 
+ * Based on https://github.com/GaretJax/phpbrowscap/
+ * @author Jonathan Stoppani <jonathan@stoppani.name>
  * @author rexdev.de
  * @package redaxo4.2
  * @version svn:$Id$

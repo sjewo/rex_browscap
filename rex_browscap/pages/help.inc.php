@@ -2,8 +2,8 @@
 
 /**
  * RexBrowscap Addon
- * Based on http://code.google.com/p/phpbrowscap/
- * @author st DOT jonathan AT gmail DOT com 
+ * Based on https://github.com/GaretJax/phpbrowscap/
+ * @author Jonathan Stoppani <jonathan@stoppani.name>
  * @author rexdev.de
  * @package redaxo4.2
  * @version svn:$Id$
@@ -21,7 +21,7 @@ $func = rex_request('func', 'string');
 $chapterpages = array (
 ''                => array('Readme','_readme.txt','textile'),
 'addonchangelog'  => array('Changelog','_changelog.txt','textile'),
-'tickets'         => array('PHPBrowscap Projektseite','http://code.google.com/p/phpbrowscap/','jsopenwin')
+'tickets'         => array('PHPBrowscap Projektseite','https://github.com/garetjax/phpbrowscap','jsopenwin')
 );
 
 // BUILD CHAPTER NAVIGATION
