@@ -8,7 +8,7 @@
  * @package redaxo4.2
  * @version svn:$Id$
  */
-
+ 
 // ADDON IDENTIFIER AUS ORDNERNAMEN ABLEITEN
 ////////////////////////////////////////////////////////////////////////////////
 $mypage = 'rex_browscap';
