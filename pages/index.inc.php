@@ -13,22 +13,22 @@
 
 // PARAMS, ADDON IDENTIFIER & ROOT DIR
 ////////////////////////////////////////////////////////////////////////////////
-$mypage = rex_request('page', 'string');
+$mypage  = rex_request('page', 'string');
 $subpage = rex_request('subpage', 'string');
 $chapter = rex_request('chapter', 'string');
-$func = rex_request('func', 'string');
-$myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage;
+$func    = rex_request('func', 'string');
+$myroot  = $REX['INCLUDE_PATH'].'/addons/'.$mypage;
 
 // BACKEND CSS
 ////////////////////////////////////////////////////////////////////////////////
-$header = array(
-'  <link rel="stylesheet" type="text/css" href="../files/addons/'.$mypage.'/backend.css" media="screen, projection, print" />'
-);
+$includes = '
+<!-- '.$mypage.' -->
+  <link rel="stylesheet" type="text/css" href="../files/addons/'.$mypage.'/backend.css" media="screen, projection, print" />
+<!-- /'.$mypage.' -->
+';
+$include_func = 'return $params["subject"].\''.$includes.'\';';
+rex_register_extension('PAGE_HEADER', create_function('$params',$include_func));
 
-if ($REX['REDAXO']) {
-  include_once $myroot.'/functions/function.rexdev_header_add.inc.php';
-  rex_register_extension('PAGE_HEADER', 'rexdev_header_add',$header);
-}
 
 // INCLUDE FUNCTIONS
 ////////////////////////////////////////////////////////////////////////////////
