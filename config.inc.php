@@ -50,14 +50,16 @@ switch($phpversion)
   case ($phpversion<5):
     // VERSION FÜR PHP 4
     rex_warning('Die PHP4 Version ist depreciated!');
-    require_once('libs/php4/Browscap.php');
+    require_once('vendor/phpbrowscap/php4/Browscap.php');
     break;
 
   default:
     // VERSION FÜR PHP 5
-    require_once('libs/php5/Browscap.php');
+    require_once('vendor/phpbrowscap/php5/Browscap.php');
     break;
 }
+
+require_once('vendor/mobiledetect/Mobile_Detect.php');
 
 // REQUIRE REX_GET_BROWSER FUNCTION
 ////////////////////////////////////////////////////////////////////////////////
