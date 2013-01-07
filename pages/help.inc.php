@@ -2,11 +2,13 @@
 
 /**
  * RexBrowscap Addon
- * Based on https://github.com/GaretJax/phpbrowscap/
- * @author Jonathan Stoppani <jonathan@stoppani.name>
+ *
+ * @author st DOT jonathan AT gmail DOT com
+ * @link https://github.com/GaretJax/phpbrowscap/
  * @author rexdev.de
- * @package redaxo4.2
- * @version svn:$Id$
+ * @link https://github.com/jdlx/rex_browscap
+ *
+ * @package redaxo 4.3.x/4.4.x
  */
 
 // PARAMS
@@ -50,17 +52,17 @@ switch ($parse)
   $content = file_get_contents($source);
   $html = textile_parser($content);
   break;
-  
+
   case 'txt':
   $source = $addonroot.$source;
   $content = file_get_contents($source);
   $html =  '<pre class="plain">'.$content.'</pre>';
   break;
-  
+
   case 'iframe':
   $html = '<iframe src="'.$source.'" width="99%" height="600px"></iframe>';
   break;
-  
+
   case 'jsopenwin':
   $html = 'Externer link: <a href="'.$source.'">'.$source.'</a>
   <script language="JavaScript">
@@ -83,4 +85,3 @@ echo '
   </div>
 </div>';
 
-?>

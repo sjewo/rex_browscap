@@ -2,11 +2,13 @@
 
 /**
  * RexBrowscap Addon
- * Based on https://github.com/GaretJax/phpbrowscap/
- * @author Jonathan Stoppani <jonathan@stoppani.name>
+ *
+ * @author st DOT jonathan AT gmail DOT com
+ * @link https://github.com/GaretJax/phpbrowscap/
  * @author rexdev.de
- * @package redaxo4.2
- * @version svn:$Id$
+ * @link https://github.com/jdlx/rex_browscap
+ *
+ * @package redaxo 4.3.x/4.4.x
  */
 
 // TEXTILE PARSER FUNCTION
@@ -20,7 +22,7 @@ if (!function_exists('textile_parser'))
     {
       if($textile!='')
       {
-        // Aktuell und korrigiert REX_VALUE Abfrage (http://forum.redaxo.de/sutra60654.html) 
+        // Aktuell und korrigiert REX_VALUE Abfrage (http://forum.redaxo.de/sutra60654.html)
         $textile = htmlspecialchars_decode($textile);
         $textile = str_replace("<br />","",$textile);
         $textile = str_replace("&#039;","'",$textile);
@@ -60,4 +62,3 @@ if (!function_exists('echotextile'))
     }
   }
 }
-?>

@@ -1,10 +1,12 @@
 /**
  * RexBrowscap Addon
- * Based on http://code.google.com/p/phpbrowscap/
- * @author st DOT jonathan AT gmail DOT com 
+ *
+ * @author st DOT jonathan AT gmail DOT com
+ * @link https://github.com/GaretJax/phpbrowscap/
  * @author rexdev.de
- * @package redaxo4.2
- * @version svn:$Id: rex_browscap_backend.css 16 2010-04-03 13:55:51Z jeffe $
+ * @link https://github.com/jdlx/rex_browscap
+ *
+ * @package redaxo 4.3.x/4.4.x
  */
 
 /* ADDON HEADLINE */
@@ -12,12 +14,12 @@ span.addonversion {
   font-size:10px;
   color:silver;
   }
-  
+
 /* ADDON CONTENT */
 .rexbrowscap  {
   padding:2px 8px 8px 8px;
   }
-  
+
 .rexbrowscap p {
   font-size:12px;
   }
@@ -52,7 +54,7 @@ span.addonversion {
   margin:2px 0 10px 0;
   padding:0;
   }
-  
+
 .rexbrowscap cite,
 .rexbrowscap code,
 .rexbrowscap pre {

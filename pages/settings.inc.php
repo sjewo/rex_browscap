@@ -2,11 +2,13 @@
 
 /**
  * RexBrowscap Addon
- * Based on https://github.com/GaretJax/phpbrowscap/
- * @author Jonathan Stoppani <jonathan@stoppani.name>
+ *
+ * @author st DOT jonathan AT gmail DOT com
+ * @link https://github.com/GaretJax/phpbrowscap/
  * @author rexdev.de
- * @package redaxo4.2
- * @version svn:$Id$
+ * @link https://github.com/jdlx/rex_browscap
+ *
+ * @package redaxo 4.3.x/4.4.x
  */
 
 // PARAMS
@@ -29,7 +31,7 @@ if ($func == "flush")
   foreach($cachefiles as $file)
   {
     $file = $REX['ADDON']['rex_browscap']['cache'].'/'.$file;
-    
+
     if(is_file($file))
     {
       if(unlink($file))
@@ -43,7 +45,7 @@ if ($func == "flush")
       }
     }
   }
-  
+
   if ($success)
   {
     echo rex_info('Browser-Datenbank wird beim n&auml;chsten Seitenaufruf regeneriert.');
@@ -53,7 +55,7 @@ if ($func == "flush")
     echo rex_warning('Beim L&ouml;schen des Cache traten Probleme auf - Schreibrechte für Cache Ordner &uuml;berpr&uuml;fen und ggf Korrigieren!');
   }
 
-  
+
 }
 
 
@@ -63,7 +65,7 @@ echo '
 <div class="rex-addon-output">
 
   <h2 class="rex-hl2" style="font-size:1em">Browser-Datenbank</h2>
-  
+
 
   <div class="rex-area-content">
 
@@ -73,13 +75,13 @@ echo '
     <p>
 
     <div class="rex-form">
-    
+
       <form action="index.php" method="get">
         <input type="hidden" name="page" value="rex_browscap" />
         <input type="hidden" name="subpage" value="settings" />
         <input type="hidden" name="func" value="flush" />
         <fieldset class="rex-form-col-1">
-        
+
           <div class="rex-form-wrapper">
             <div class="rex-form-row rex-form-element-v2">
               <p class="rex-form-submit">
@@ -87,14 +89,13 @@ echo '
               </p>
             </div>
           </div>
-          
+
         </fieldset>
       </form>
-      
+
     </div>
-    
+
   </div>
 
 </div>
 ';
-?>

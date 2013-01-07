@@ -2,13 +2,15 @@
 
 /**
  * RexBrowscap Addon
- * Based on https://github.com/GaretJax/phpbrowscap/
- * @author Jonathan Stoppani <jonathan@stoppani.name>
+ *
+ * @author st DOT jonathan AT gmail DOT com
+ * @link https://github.com/GaretJax/phpbrowscap/
  * @author rexdev.de
- * @package redaxo4.2
- * @version svn:$Id$
+ * @link https://github.com/jdlx/rex_browscap
+ *
+ * @package redaxo 4.3.x/4.4.x
  */
- 
+
 // ADDON IDENTIFIER
 $mypage = "rex_browscap";
 
@@ -19,4 +21,3 @@ if (intval(PHP_VERSION) < 5)
 
 $REX['ADDON']['install'][$mypage] = 1;
 
-?>
