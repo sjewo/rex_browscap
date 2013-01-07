@@ -18,7 +18,7 @@ $mypage = "rex_browscap";
 // CHECK ADDON FOLDER NAME
 ////////////////////////////////////////////////////////////////////////////////
 $addon_folder = basename(dirname(__FILE__));
-if($addon_folder != $myself)
+if($addon_folder != $mypage)
 {
   $REX['ADDON']['installmsg'][$addon_folder] = '<br />Der Name des Addon-Ordners ist inkorrekt: <code style="color:black;font-size:12px;">'.$addon_folder.'</code>
                                                 <br />Addon-Ordner in <code style="color:black;font-size:1.23em;">'.$mypage.'</code> umbenennen und Installation wiederholen';
