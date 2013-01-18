@@ -24,6 +24,11 @@ if (!function_exists('rex_get_browser'))
     $bc->silent = $REX['ADDON']['rex_browscap']['silent'];
     $bc->userAgent = $REX['ADDON']['rex_browscap']['userAgent'];
 
+    // USE TEMP URLS WHILE BROWSCAP PROJECT IS MIGRATING
+    // https://github.com/GaretJax/phpbrowscap/issues/24#issuecomment-10088419
+    $bc->remoteIniUrl = 'http://tempdownloads.browserscap.com/stream.php?BrowsCapINI';
+    $bc->remoteVerUrl = 'http://tempdownloads.browserscap.com/versions/version-date.php';
+
     return $bc->getBrowser($user_agent, $return_array);
   }
 }
