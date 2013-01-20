@@ -66,7 +66,7 @@ function rex_browscap_ajax_reply($data=false)
 
 // IDENTIFIER & ROOT
 ////////////////////////////////////////////////////////////////////////////////
-$mypage = 'rex_browscap';
+$mypage = '_rex_browscap';
 $myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/';
 
 
@@ -81,9 +81,9 @@ $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
 
 // SETTINGS
 ////////////////////////////////////////////////////////////////////////////////
-$REX['ADDON']['rex_browscap']['cache'] = $REX['HTDOCS_PATH'].'files/addons/rex_browscap/cache';
-$REX['ADDON']['rex_browscap']['silent'] = true;
-$REX['ADDON']['rex_browscap']['userAgent'] = 'Redaxo Addon "rex_browsecap" - version '.$REX['ADDON']['version'][$mypage];
+$REX['ADDON']['_rex_browscap']['cache'] = $REX['HTDOCS_PATH'].'files/addons/_rex_browscap/cache';
+$REX['ADDON']['_rex_browscap']['silent'] = true;
+$REX['ADDON']['_rex_browscap']['userAgent'] = 'Redaxo Browscap Addon - version '.$REX['ADDON']['version'][$mypage];
 
 
 // --- DYN

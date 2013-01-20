@@ -30,7 +30,7 @@ if ($func == "flush")
   $success = TRUE;
   foreach($cachefiles as $file)
   {
-    $file = $REX['ADDON']['rex_browscap']['cache'].'/'.$file;
+    $file = $REX['ADDON']['_rex_browscap']['cache'].'/'.$file;
 
     if(is_file($file))
     {

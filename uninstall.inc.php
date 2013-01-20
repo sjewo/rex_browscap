@@ -11,5 +11,5 @@
  * @package redaxo 4.3.x/4.4.x
  */
 
-$REX['ADDON']['install']['rex_browscap'] = 0;
+$REX['ADDON']['install']['_rex_browscap'] = 0;
 

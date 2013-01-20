@@ -11,5 +11,5 @@
  * @package redaxo 4.3.x/4.4.x
  */
 
-header("Location: index.php?page=rex_browscap&subpage=help");
+header("Location: index.php?page=_rex_browscap&subpage=help");
 

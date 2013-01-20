@@ -28,9 +28,9 @@ if (!function_exists('rex_get_browser'))
       return $_SESSION['rex_get_browser'];
     }
 
-    $bc = new Browscap($REX['ADDON']['rex_browscap']['cache']);
-    $bc->silent = $REX['ADDON']['rex_browscap']['silent'];
-    $bc->userAgent = $REX['ADDON']['rex_browscap']['userAgent'];
+    $bc = new Browscap($REX['ADDON']['_rex_browscap']['cache']);
+    $bc->silent = $REX['ADDON']['_rex_browscap']['silent'];
+    $bc->userAgent = $REX['ADDON']['_rex_browscap']['userAgent'];
 
     // USE TEMP URLS WHILE BROWSCAP PROJECT IS MIGRATING
     // https://github.com/GaretJax/phpbrowscap/issues/24#issuecomment-10088419

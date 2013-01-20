@@ -12,7 +12,7 @@
  */
 
 // ADDON IDENTIFIER
-$mypage = "rex_browscap";
+$mypage = "_rex_browscap";
 
 
 // CHECK ADDON FOLDER NAME
