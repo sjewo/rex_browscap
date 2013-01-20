@@ -18,21 +18,6 @@ function rex_browscap_cookies(data){                                            
   document.cookie="rex_browscap_cookies_set=true; path=/";
 }
 
-function getCookie(c_name)
-{                                                                               //console.log('reading cookie: '+c_name);
-var i,x,y,ARRcookies=document.cookie.split(";");
-for (i=0;i<ARRcookies.length;i++)
-{
-  x=ARRcookies[i].substr(0,ARRcookies[i].indexOf("="));
-  y=ARRcookies[i].substr(ARRcookies[i].indexOf("=")+1);
-  x=x.replace(/^\s+|\s+$/g,"");
-  if (x==c_name)
-    {
-    return unescape(y);
-    }
-  }
-}
-
 function rex_browscap_callback(data,async){
     var xmlhttp = null;
     if (window.XMLHttpRequest) {
@@ -46,6 +31,10 @@ function rex_browscap_callback(data,async){
     return xmlhttp.responseText;
 }
 
+function rex_browscap_inited(){
+  return (document.cookie.indexOf('rex_browscap_cookies_set',0) === -1) ? false : true;
+}
+
 function rex_get_browser(){
   data = {};
   data.action = 'rex_get_browser';
@@ -54,7 +43,7 @@ function rex_get_browser(){
 
 function rex_browscap_screen_sniff(forced){                                     //console.log('sniffing forced: '+forced);
   if(!forced){
-    if(getCookie('rex_browscap_cookies_set')=='true'){                          //console.log('rex_browscap_cookies_set: true');
+    if(rex_browscap_inited()){                                                  //console.log('rex_browscap_cookies_set: true');
       return false;
     }
   }                                                                             //console.log('doing screen sniffing..');
