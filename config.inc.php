@@ -34,6 +34,11 @@ if($data!==false)
       die;
       break;
 
+    case 'rex_get_browser':
+      return rex_browscap_ajax_reply($_SESSION['rex_get_browser']);             #FB::log($_SESSION,' $_SESSION');
+      die;
+      break;
+
     default:
      return rex_panel_ajax_reply(array('error'=>'no valid action defined'));
      break;

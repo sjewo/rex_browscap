@@ -30,6 +30,11 @@ function rex_browscap_callback(data) {
 }
 
 function rex_browscap_screen_sniff(){
+function rex_get_browser(){
+  data = {};
+  data.action = 'rex_get_browser';
+  return JSON.parse(rex_browscap_callback(data,false));
+}
   var data = {};
   data.display_width = screen.width;
   data.display_height = screen.height;
