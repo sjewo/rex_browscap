@@ -13,10 +13,10 @@
 
 // PARAMS
 ////////////////////////////////////////////////////////////////////////////////
-$page = rex_request('page', 'string');
+$mypage    = rex_request('page', 'string');
 $subpage = rex_request('subpage', 'string');
 $chapter = rex_request('chapter', 'string');
-$func = rex_request('func', 'string');
+$func    = rex_request('func', 'string');
 
 // CHAPTER DEFS ('CHAPTER PARAM' => array('TITLE','SOURCE','PARSEMODE'))
 ////////////////////////////////////////////////////////////////////////////////
@@ -32,7 +32,7 @@ $chapternav = '';
 foreach ($chapterpages as $chapterparam => $chapterprops)
 {
   if ($chapter != $chapterparam) {
-    $chapternav .= ' | <a href="?page='.$page.'&subpage=help&chapter='.$chapterparam.'">'.$chapterprops[0].'</a>';
+    $chapternav .= ' | <a href="?page='.$mypage.'&subpage=help&chapter='.$chapterparam.'">'.$chapterprops[0].'</a>';
   } else {
     $chapternav .= ' | '.$chapterprops[0];
   }
@@ -41,7 +41,7 @@ $chapternav = ltrim($chapternav, " | ");
 
 // SWITCH PARSEMODES & BUILD OUTPUT
 ////////////////////////////////////////////////////////////////////////////////
-$addonroot = $REX['INCLUDE_PATH']. '/addons/'.$page.'/';
+$addonroot = $REX['INCLUDE_PATH']. '/addons/'.$mypage.'/';
 $source    = $chapterpages[$chapter][1];
 $parsemode = $chapterpages[$chapter][2];
 
