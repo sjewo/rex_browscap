@@ -32,7 +32,7 @@ rex_register_extension('PAGE_HEADER', create_function('$params',$include_func));
 
 // INCLUDE FUNCTIONS
 ////////////////////////////////////////////////////////////////////////////////
-require_once $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/functions/function.textile_parser.inc.php';
+require_once $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/functions/function.browscap_helpers.inc.php';
 
 // REX TOP
 ////////////////////////////////////////////////////////////////////////////////

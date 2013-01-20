@@ -43,35 +43,8 @@ $chapternav = ltrim($chapternav, " | ");
 ////////////////////////////////////////////////////////////////////////////////
 $addonroot = $REX['INCLUDE_PATH']. '/addons/'.$page.'/';
 $source    = $chapterpages[$chapter][1];
-$parse     = $chapterpages[$chapter][2];
+$parsemode = $chapterpages[$chapter][2];
 
-switch ($parse)
-{
-  case 'textile':
-  $source = $addonroot.$source;
-  $content = file_get_contents($source);
-  $html = textile_parser($content);
-  break;
-
-  case 'txt':
-  $source = $addonroot.$source;
-  $content = file_get_contents($source);
-  $html =  '<pre class="plain">'.$content.'</pre>';
-  break;
-
-  case 'iframe':
-  $html = '<iframe src="'.$source.'" width="99%" height="600px"></iframe>';
-  break;
-
-  case 'jsopenwin':
-  $html = 'Externer link: <a href="'.$source.'">'.$source.'</a>
-  <script language="JavaScript">
-  <!--
-  window.open(\''.$source.'\',\''.$chapterpages[$chapter][1].'\');
-  //-->
-  </script>';
-  break;
-}
 
 // ADDON OUTPUT
 ////////////////////////////////////////////////////////////////////////////////
@@ -80,7 +53,7 @@ echo '
   <h2 class="rex-hl2" style="font-size:1em">'.$chapternav.'</h2>
   <div class="rex-addon-content">
     <div class= "rexbrowscap">
-    '.$html.'
+    '.browscap_incparse($addonroot,$source,$parsemode,true).'
     </div>
   </div>
 </div>';
