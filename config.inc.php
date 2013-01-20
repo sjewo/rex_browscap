@@ -99,6 +99,7 @@ $REX['ADDON'][$mypage]['params_cast'] = array (
 // --- DYN
 $REX["ADDON"]["_rex_browscap"]["settings"] = array (
   'frontend_js_include' => '1',
+  'use_mobiledetect' => '1',
 );
 // --- /DYN
 

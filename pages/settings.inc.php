@@ -37,8 +37,13 @@ switch($func)
         }
       }
     }
+
+    if(isset($_SESSION['rex_get_browser'])){
+      unset($_SESSION['rex_get_browser']);
+      rex_get_browser();
+    }
     if ($success) {
-      echo rex_info('Browser-Datenbank wird beim n&auml;chsten Seitenaufruf regeneriert.');
+      echo rex_info('Browser-Datenbank wurde regeneriert.');
     } else {
       echo rex_warning('Beim L&ouml;schen des Cache traten Probleme auf - Schreibrechte für Cache Ordner &uuml;berpr&uuml;fen und ggf Korrigieren!');
     }
@@ -60,7 +65,7 @@ switch($func)
 }
 
 
-// SELECT BOX
+// frontend_js_include SELECT
 ////////////////////////////////////////////////////////////////////////////////
 $tmp = new rex_select();
 $tmp->setSize(1);
@@ -69,6 +74,17 @@ $tmp->addOption('Kein Include',0);
 $tmp->addOption('Automatisch nach head bzw. base tag',1);
 $tmp->setSelected($REX['ADDON'][$mypage]['settings']['frontend_js_include']);
 $frontend_js_include = $tmp->get();
+
+
+// use_mobiledetect SELECT
+////////////////////////////////////////////////////////////////////////////////
+$tmp = new rex_select();
+$tmp->setSize(1);
+$tmp->setName('use_mobiledetect');
+$tmp->addOption('Nein',0);
+$tmp->addOption('Ja',1);
+$tmp->setSelected($REX['ADDON'][$mypage]['settings']['use_mobiledetect']);
+$use_mobiledetect = $tmp->get();
 
 // FORM
 ////////////////////////////////////////////////////////////////////////////////
@@ -90,6 +106,13 @@ echo '
               <p class="rex-form-col-a rex-form-select">
                 <label for="frontend_js_include">Frontend JS Include</label>
                 '.$frontend_js_include.'
+              </p>
+            </div><!-- .rex-form-row -->
+
+            <div class="rex-form-row">
+              <p class="rex-form-col-a rex-form-select">
+                <label for="frontend_js_include">MobileDetect Auswertung</label>
+                '.$use_mobiledetect.'
               </p>
             </div><!-- .rex-form-row -->
 
