@@ -128,8 +128,7 @@ if($REX['REDAXO']){
 $js = '
 <!-- '.$mypage.' -->
   <script src="'.$REX['HTDOCS_PATH'].'files/addons/'.$mypage.'/rex_browscap.js" type="text/javascript"></script>
-<!-- /'.$mypage.' -->
-';
-$js_include = 'return preg_replace("/<head[^>]*>/", \'$0'.$js.'\', $params["subject"]);';
+<!-- /'.$mypage.' -->';
+$js_include = 'return preg_replace("/<base[^>]*>/", \'$0'.$js.'\', $params["subject"]);';
 rex_register_extension('OUTPUT_FILTER', create_function('$params',$js_include));
 
