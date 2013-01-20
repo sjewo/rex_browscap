@@ -24,7 +24,7 @@ if (!function_exists('rex_get_browser'))
       session_start();
     }
 
-    if(isset($_SESSION['rex_get_browser'])){
+    if(isset($_SESSION['rex_get_browser']['browser_name'])){
       return $_SESSION['rex_get_browser'];
     }
 
@@ -37,7 +37,9 @@ if (!function_exists('rex_get_browser'))
     $bc->remoteIniUrl = 'http://tempdownloads.browserscap.com/stream.php?BrowsCapINI';
     $bc->remoteVerUrl = 'http://tempdownloads.browserscap.com/versions/version-date.php';
 
-    $_SESSION['rex_get_browser'] = $bc->getBrowser($user_agent, $return_array);
+    $_SESSION['rex_get_browser'] = isset($_SESSION['rex_get_browser'])
+                                 ? array_merge($_SESSION['rex_get_browser'],$bc->getBrowser($user_agent, $return_array))
+                                 : $bc->getBrowser($user_agent, $return_array);
 
     return $_SESSION['rex_get_browser'];
   }
