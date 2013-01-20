@@ -38,14 +38,7 @@ require_once $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/functions/function.browsc
 ////////////////////////////////////////////////////////////////////////////////
 require $REX['INCLUDE_PATH'] . '/layout/top.php';
 
-// BUILD SUBNAVIGATION
-////////////////////////////////////////////////////////////////////////////////
-$subpages = array (
-    array ('','Cache'),
-    array ('help','Hilfe')
-  );
-
-rex_title('RexBrowscap <span class="addonversion">'.$REX['ADDON']['version'][$mypage].'</span>', $subpages);
+rex_title('RexBrowscap <span class="addonversion">'.$REX['ADDON']['version'][$mypage].'</span>', $REX['ADDON'][$mypage]['SUBPAGES']);
 
 // SET DEFAULT PAGE / INCLUDE PAGE
 ////////////////////////////////////////////////////////////////////////////////

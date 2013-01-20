@@ -89,6 +89,14 @@ $REX['ADDON']['_rex_browscap']['userAgent'] = 'Redaxo Browscap Addon - version '
 // --- DYN
 // --- /DYN
 
+// SUBPAGES
+//////////////////////////////////////////////////////////////////////////////
+$REX['ADDON'][$mypage]['SUBPAGES'] = array (
+  //     subpage    ,label                         ,perm   ,params               ,attributes
+  array (''         ,'Settings'                    ,''     ,''                   ,''),
+  array ('help'     ,'Hilfe'                       ,''     ,''                   ,''),
+);
+
 
 // REQUIRE LIBS BY PHP VERSION
 ////////////////////////////////////////////////////////////////////////////////
