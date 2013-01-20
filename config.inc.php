@@ -79,14 +79,27 @@ $REX['ADDON']['author'][$mypage]      = 'rexdev.de';
 $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
 
 
-// SETTINGS
+// FIXED SETTINGS
 ////////////////////////////////////////////////////////////////////////////////
-$REX['ADDON']['_rex_browscap']['cache'] = $REX['HTDOCS_PATH'].'files/addons/_rex_browscap/cache';
-$REX['ADDON']['_rex_browscap']['silent'] = true;
-$REX['ADDON']['_rex_browscap']['userAgent'] = 'Redaxo Browscap Addon - version '.$REX['ADDON']['version'][$mypage];
+$REX['ADDON'][$mypage]['cache'] = $REX['HTDOCS_PATH'].'files/addons/_rex_browscap/cache';
+$REX['ADDON'][$mypage]['silent'] = true;
+$REX['ADDON'][$mypage]['userAgent'] = 'Redaxo Browscap Addon - version '.$REX['ADDON']['version'][$mypage];
+$REX['ADDON'][$mypage]['params_cast'] = array (
+  'page'        => 'unset',
+  'subpage'     => 'unset',
+  'minorpage'   => 'unset',
+  'func'        => 'unset',
+  'submit'      => 'unset',
+  'sendit'      => 'unset',
+  'PHPSESSID'   => 'unset',
+  );
 
-
+// USER SETTINGS
+////////////////////////////////////////////////////////////////////////////////
 // --- DYN
+$REX["ADDON"]["_rex_browscap"]["settings"] = array (
+  'frontend_js_include' => '1',
+);
 // --- /DYN
 
 // SUBPAGES
@@ -127,16 +140,27 @@ require_once('vendor/mobiledetect/Mobile_Detect.php');
 require_once('functions/function.rex_get_browser.inc.php');
 
 
-// FRONTEND JS SCREEN SIZE SNIFFER
+// EXIT HERE IF BACKEND..
 ////////////////////////////////////////////////////////////////////////////////
 if($REX['REDAXO']){
   return;
 }
 
-$js = '
-<!-- '.$mypage.' -->
-  <script src="'.$REX['HTDOCS_PATH'].'files/addons/'.$mypage.'/rex_browscap.js" type="text/javascript"></script>
-<!-- /'.$mypage.' -->';
-$js_include = 'return preg_replace("/<base[^>]*>/", \'$0'.$js.'\', $params["subject"]);';
-rex_register_extension('OUTPUT_FILTER', create_function('$params',$js_include));
+// FRONTEND JS SCREEN SIZE SNIFFER
+////////////////////////////////////////////////////////////////////////////////
+if($REX["ADDON"]["_rex_browscap"]["settings"]['frontend_js_include']!=='0')
+{
+  $rex_browscap_frontend_js = '
+  <!-- '.$mypage.' -->
+    <script src="'.$REX['HTDOCS_PATH'].'files/addons/'.$mypage.'/rex_browscap.min.js" type="text/javascript"></script>
+  <!-- /'.$mypage.' -->';
 
+  rex_register_extension('OUTPUT_FILTER', 'rex_browscap_frontend_opf');
+
+  function rex_browscap_frontend_opf($params){
+    global $rex_browscap_frontend_js;
+    preg_match_all('/<(?:base|head)[^>]*>/i',$params['subject'],$m);
+    $needle = array_pop($m[0]);
+    return str_replace($needle,$needle.$rex_browscap_frontend_js,$params['subject']);
+  }
+}

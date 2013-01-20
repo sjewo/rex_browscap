@@ -13,59 +13,107 @@
 
 // PARAMS
 ////////////////////////////////////////////////////////////////////////////////
-$page = rex_request('page', 'string');
-$subpage = rex_request('subpage', 'string');
-$func = rex_request('func', 'string');
-$def_desc = rex_request('def_desc', 'string');
-$def_keys = rex_request('def_keys', 'string');
-$allow_articleid = rex_request('allow_articleid', 'int');
+$mypage          = rex_request('page', 'string');
+$subpage         = rex_request('subpage', 'string');
+$func            = rex_request('func', 'string');
 
 
-// FLUSH CACHE FILES
+// FORM FUNCTIONS
 ////////////////////////////////////////////////////////////////////////////////
-$cachefiles = array('browscap.ini','cache.php');
-
-if ($func == "flush")
+switch($func)
 {
-  $success = TRUE;
-  foreach($cachefiles as $file)
-  {
-    $file = $REX['ADDON']['_rex_browscap']['cache'].'/'.$file;
-
-    if(is_file($file))
-    {
-      if(unlink($file))
-      {
-        echo rex_info('"'.$file.'" wurde gel&ouml;scht.');
-      }
-      else
-      {
-        $success = FALSE;
-        echo rex_warning('"'.$file.'" konnte nicht gel&ouml;scht werden!');
+  case'flush':
+    // FLUSH CACHE FILES
+    $cachefiles = array('browscap.ini','cache.php');
+    $success = TRUE;
+    foreach($cachefiles as $file) {
+      $file = $REX['ADDON']['_rex_browscap']['cache'].'/'.$file;
+      if(is_file($file)) {
+        if(unlink($file)) {
+          echo rex_info('"'.$file.'" wurde gel&ouml;scht.');
+        } else {
+          $success = FALSE;
+          echo rex_warning('"'.$file.'" konnte nicht gel&ouml;scht werden!');
+        }
       }
     }
-  }
+    if ($success) {
+      echo rex_info('Browser-Datenbank wird beim n&auml;chsten Seitenaufruf regeneriert.');
+    } else {
+      echo rex_warning('Beim L&ouml;schen des Cache traten Probleme auf - Schreibrechte für Cache Ordner &uuml;berpr&uuml;fen und ggf Korrigieren!');
+    }
+  break;
 
-  if ($success)
-  {
-    echo rex_info('Browser-Datenbank wird beim n&auml;chsten Seitenaufruf regeneriert.');
-  }
-  else
-  {
-    echo rex_warning('Beim L&ouml;schen des Cache traten Probleme auf - Schreibrechte für Cache Ordner &uuml;berpr&uuml;fen und ggf Korrigieren!');
-  }
+  case'savesettings':
+    // MERGE REQUEST & ADDON SETTINGS
+    $params_cast = $REX['ADDON'][$mypage]['params_cast'];
+    $myCONF = array_merge($REX['ADDON'][$mypage]['settings'],browscap_cast($_POST,$params_cast));
 
-
+    // SAVE SETTINGS
+    if(browscap_saveConf($myCONF)) {
+      echo rex_info('Einstellungen wurden gespeichert.');
+    } else {
+      echo rex_warning('Beim speichern der Einstellungen ist ein Problem aufgetreten.');
+    }
+  break;
+  default:
 }
 
+
+// SELECT BOX
+////////////////////////////////////////////////////////////////////////////////
+$tmp = new rex_select();
+$tmp->setSize(1);
+$tmp->setName('frontend_js_include');
+$tmp->addOption('Kein Include',0);
+$tmp->addOption('Automatisch nach head bzw. base tag',1);
+$tmp->setSelected($REX['ADDON'][$mypage]['settings']['frontend_js_include']);
+$frontend_js_include = $tmp->get();
 
 // FORM
 ////////////////////////////////////////////////////////////////////////////////
 echo '
-<div class="rex-addon-output">
+<div class="rex-addon-output" id="subpage-'.$subpage.'">
+  <div class="rex-form">
 
-  <h2 class="rex-hl2" style="font-size:1em">Browser-Datenbank</h2>
+  <form action="index.php?page='.$mypage.'" method="POST" id="settings">
+    <input type="hidden" name="page" value="'.$mypage.'" />
+    <input type="hidden" name="subpage" value="'.$subpage.'" />
+    <input type="hidden" name="func" value="savesettings" />
 
+
+        <fieldset class="rex-form-col-1">
+          <legend>Einstellungen</legend>
+          <div class="rex-form-wrapper">
+
+            <div class="rex-form-row">
+              <p class="rex-form-col-a rex-form-select">
+                <label for="frontend_js_include">Frontend JS Include</label>
+                '.$frontend_js_include.'
+              </p>
+            </div><!-- .rex-form-row -->
+
+            <div class="rex-form-row rex-form-element-v2">
+              <p class="rex-form-submit">
+                <input class="rex-form-submit" type="submit" id="submit" name="submit" value="Einstellungen speichern" />
+              </p>
+            </div><!-- .rex-form-row -->
+
+          </div><!-- .rex-form-wrapper -->
+        </fieldset>
+
+  </form>
+
+  </div><!-- .rex-form -->
+</div><!-- .rex-addon-output -->
+';
+
+
+
+echo '
+<div class="rex-addon-output" id="subpage-'.$subpage.'">
+
+  <h2 class="rex-hl2" style="font-size:1em">Browscap-Cache</h2>
 
   <div class="rex-area-content">
 
@@ -76,9 +124,9 @@ echo '
 
     <div class="rex-form">
 
-      <form action="index.php" method="get">
-        <input type="hidden" name="page" value="rex_browscap" />
-        <input type="hidden" name="subpage" value="settings" />
+      <form action="index.php?page='.$mypage.'" method="get">
+        <input type="hidden" name="page" value="'.$mypage.'" />
+        <input type="hidden" name="subpage" value="'.$subpage.'" />
         <input type="hidden" name="func" value="flush" />
         <fieldset class="rex-form-col-1">
 
@@ -95,7 +143,7 @@ echo '
 
     </div>
 
-  </div>
+  </div><!-- .rex-area-content -->
 
-</div>
+</div><!-- .rex-addon-output -->
 ';
