@@ -74,7 +74,7 @@ $myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/';
 ////////////////////////////////////////////////////////////////////////////////
 $REX['ADDON']['rxid'][$mypage]        = '714';
 $REX['ADDON']['name'][$mypage]        = 'RexBrowscap';
-$REX['ADDON']['version'][$mypage]     = '0.9.1 beta';
+$REX['ADDON']['version'][$mypage]     = '0.9.2 beta';
 $REX['ADDON']['author'][$mypage]      = 'rexdev.de';
 $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
 
@@ -160,7 +160,7 @@ if($REX["ADDON"]["_rex_browscap"]["settings"]['frontend_js_include']!=='0')
 
   function rex_browscap_frontend_opf($params){
     global $rex_browscap_frontend_js;
-    preg_match_all('/<(?:base|head)[^>]*>/i',$params['subject'],$m);
+    preg_match_all('/<(?:base|head(?!e))[^>]*>/i',$params['subject'],$m);
     $needle = array_pop($m[0]);
     return str_replace($needle,$needle.$rex_browscap_frontend_js,$params['subject']);
   }
