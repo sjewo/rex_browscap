@@ -77,6 +77,8 @@ $REX['ADDON']['name'][$mypage]        = 'RexBrowscap';
 $REX['ADDON']['version'][$mypage]     = '0.9.2 beta';
 $REX['ADDON']['author'][$mypage]      = 'rexdev.de';
 $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
+$REX['ADDON']['perm'][$mypage]   	    = $mypage."[]";
+$REX['PERM'][] = $mypage.'[]';
 
 
 // FIXED SETTINGS
@@ -105,12 +107,14 @@ $REX["ADDON"]["_rex_browscap"]["settings"] = array (
 
 // SUBPAGES
 //////////////////////////////////////////////////////////////////////////////
-$REX['ADDON'][$mypage]['SUBPAGES'] = array (
-  //     subpage    ,label                         ,perm   ,params               ,attributes
-  array (''         ,'Settings'                    ,''     ,''                   ,''),
-  array ('help'     ,'Hilfe'                       ,''     ,''                   ,''),
-);
-
+if ($REX['USER'] && ($REX['USER']->isAdmin() || $REX['USER']->hasPerm($mypage.'[]')))
+{
+  $REX['ADDON'][$mypage]['SUBPAGES'] = array (
+    //     subpage    ,label                         ,perm   ,params               ,attributes
+    array (''         ,'Settings'                    ,''     ,''                   ,''),
+    array ('help'     ,'Hilfe'                       ,''     ,''                   ,''),
+  );
+}
 
 // REQUIRE LIBS BY PHP VERSION
 ////////////////////////////////////////////////////////////////////////////////
