@@ -8,7 +8,7 @@
  * @author rexdev.de
  * @link https://github.com/jdlx/rex_browscap
  *
- * @package redaxo 4.3.x/4.4.x
+ * @package redaxo 4.3.x/4.4.x/4.5.x
  */
 
 // AJAX RECEIVER/API
@@ -74,7 +74,7 @@ $myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/';
 ////////////////////////////////////////////////////////////////////////////////
 $REX['ADDON']['rxid'][$mypage]        = '714';
 $REX['ADDON']['name'][$mypage]        = 'RexBrowscap';
-$REX['ADDON']['version'][$mypage]     = '0.9.2 beta';
+$REX['ADDON']['version'][$mypage]     = '1.0.0';
 $REX['ADDON']['author'][$mypage]      = 'rexdev.de';
 $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
 $REX['ADDON']['perm'][$mypage]   	    = $mypage."[]";

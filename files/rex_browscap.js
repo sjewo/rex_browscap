@@ -6,7 +6,7 @@
  * @author rexdev.de
  * @link https://github.com/jdlx/rex_browscap
  *
- * @package redaxo 4.3.x/4.4.x
+ * @package redaxo 4.3.x/4.4.x/4.5.x
  */
 
 
