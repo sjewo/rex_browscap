@@ -1,5 +1,0 @@
-h1. RexBrowscap Changelog
-
-h4. 3.04.2010 - v0.1
-
-* Erstes Release

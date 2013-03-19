@@ -1,0 +1,147 @@
+h1. 1. Anwendung
+
+Der Aufruf der Funktion @rex_get_browser()@ gibt ein array mit einer Vielzahl von Parametern bezügl. des aufrufenden Browsers zurück
+
+bc. $browser = rex_get_browser(); // array
+
+Ein solches array sieht z.b. so aus:
+
+bc.. array (
+
+  // Daten von RexBrowscap (ermittelt über das frontend JS):
+
+  'display_width'         => 1680,
+  'display_height'        => 1050,
+  'viewport_width'        => 1652,
+  'viewport_height'       => 641,
+  'landscape'             => true,
+
+  // Daten der PHPBrowscap lib:
+
+  'browser_name'          => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.6; rv:19.0) Gecko/20100101 Firefox/19.0 FirePHP/0.7.1',
+  'browser_name_regex'    => '^mozilla/5\\.0 \\(.*mac os x.*\\).*gecko/.*firefox/19\\..*$',
+  'browser_name_pattern'  => 'Mozilla/5.0 (*Mac OS X*)*Gecko/*Firefox/19.*',
+  'Parent'                => 'Firefox 19.0',
+  'Platform'              => 'MacOSX',
+  'Win32'                 => false,
+  'Comment'               => 'Firefox 19.0',
+  'Browser'               => 'Firefox',
+  'Version'               => '19.0',
+  'MajorVer'              => 19,
+  'MinorVer'              => 0,
+  'Frames'                => true,
+  'IFrames'               => true,
+  'Tables'                => true,
+  'Cookies'               => true,
+  'JavaScript'            => true,
+  'JavaApplets'           => true,
+  'CssVersion'            => 3,
+  'Platform_Version'      => 'unknown',
+  'Alpha'                 => false,
+  'Beta'                  => false,
+  'Win16'                 => false,
+  'Win64'                 => false,
+  'BackgroundSounds'      => false,
+  'VBScript'              => false,
+  'ActiveXControls'       => false,
+  'isMobileDevice'        => false,
+  'isSyndicationReader'   => false,
+  'Crawler'               => false,
+  'AolVersion'            => 0,
+
+  // Daten der Mobiledetect lib (falls aktiviert):
+
+  'md_isMobile'           => false,
+  'md_isTablet'           => false,
+  'md_isiPhone'           => false,
+  'md_isBlackBerry'       => false,
+  'md_isHTC'              => false,
+  'md_isNexus'            => false,
+  'md_isDell'             => false,
+  'md_isMotorola'         => false,
+  'md_isSamsung'          => false,
+  'md_isSony'             => false,
+  'md_isAsus'             => false,
+  'md_isPalm'             => false,
+  'md_isVertu'            => false,
+  'md_isPantech'          => false,
+  'md_isGenericPhone'     => false,
+  'md_isBlackBerryTablet' => false,
+  'md_isiPad'             => false,
+  'md_isNexusTablet'      => false,
+  'md_isKindle'           => false,
+  'md_isSamsungTablet'    => false,
+  'md_isHTCtablet'        => false,
+  'md_isMotorolaTablet'   => false,
+  'md_isAsusTablet'       => false,
+  'md_isNookTablet'       => false,
+  'md_isAcerTablet'       => false,
+  'md_isToshibaTablet'    => false,
+  'md_isYarvikTablet'     => false,
+  'md_isMedionTablet'     => false,
+  'md_isArnovaTablet'     => false,
+  'md_isArchosTablet'     => false,
+  'md_isAinolTablet'      => false,
+  'md_isSonyTablet'       => false,
+  'md_isCubeTablet'       => false,
+  'md_isCobyTablet'       => false,
+  'md_isSMiTTablet'       => false,
+  'md_isRockChipTablet'   => false,
+  'md_isTelstraTablet'    => false,
+  'md_isGenericTablet'    => false,
+  'md_isAndroidOS'        => false,
+  'md_isBlackBerryOS'     => false,
+  'md_isPalmOS'           => false,
+  'md_isSymbianOS'        => false,
+  'md_isWindowsMobileOS'  => false,
+  'md_isWindowsPhoneOS'   => false,
+  'md_isiOS'              => false,
+  'md_isFlashLiteOS'      => NULL,
+  'md_isMeeGoOS'          => false,
+  'md_isMaemoOS'          => false,
+  'md_isJavaOS'           => false,
+  'md_iswebOS'            => false,
+  'md_isbadaOS'           => false,
+  'md_isBREWOS'           => false,
+  'md_isChrome'           => false,
+  'md_isDolfin'           => false,
+  'md_isOpera'            => false,
+  'md_isSkyfire'          => false,
+  'md_isIE'               => false,
+  'md_isFirefox'          => false,
+  'md_isBolt'             => false,
+  'md_isTeaShark'         => false,
+  'md_isBlazer'           => false,
+  'md_isSafari'           => false,
+  'md_isTizen'            => false,
+  'md_isUCBrowser'        => false,
+  'md_isDiigoBrowser'     => false,
+  'md_isPuffin'           => false,
+  'md_isGenericBrowser'   => false,
+)
+
+h1. 2. Beispiel
+
+bc.. // Mobile Geräte (Handys, PDAs, etc.) aussieben
+
+$browser = rex_get_browser();
+if ($browser['isMobileDevice']==1)
+{
+  // Code für MobileDevices..
+}
+
+p. Analog diesem Beispiel können alle keys des arrays abgefragt und für beliebige Aktionen verwertet werden.
+
+h1. 3. Funktion _rex_get_browser()_ absichern
+
+Da die von diesem Addon zur Verfügung gestellte Funktionalität nicht zum Redaxo Core gehört, sollte die Verwendung der Funktion(en) für den Fall einer De-Installation/Aktivierung des Addons abgesichert werden.
+
+In den Kopfbereich jedes Templates, Moduls, Addons, oder wo auch immer @rex_get_browser()@ verwendet werden soll zur Sicherheit folgende (oder vergleichbare) Dummy Funktion einfügen:
+
+bc. if (!function_exists('rex_get_browser')) {
+  function rex_get_browser() {
+    echo 'RexBrowscap Addon nicht installiert!';
+  }
+}
+
+Ohne eine solche Dummy Funktion kann es zu erheblichen Schwierigkeiten und evtl. totaler Nichterreichbarkeit von frontend *und* backend führen falls die Library/ das Addon nicht eingebunden und somit die Funktion @rex_get_browser()@ undefiniert ist. Sollte der worst case einmal eingetreten sein, dann müßen als ultima ratio die @rex_get_browser()@ Aufrufe manuell aus der DB gelöscht werden.

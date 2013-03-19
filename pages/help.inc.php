@@ -21,8 +21,7 @@ $func    = rex_request('func', 'string');
 // CHAPTER DEFS ('CHAPTER PARAM' => array('TITLE','SOURCE','PARSEMODE'))
 ////////////////////////////////////////////////////////////////////////////////
 $chapterpages = array (
-''                => array('Readme','_readme.txt','textile'),
-'addonchangelog'  => array('Changelog','_changelog.txt','textile'),
+''                => array('Readme','README.textile','textile'),
 'tickets'         => array('PHPBrowscap Projektseite','https://github.com/garetjax/phpbrowscap','jsopenwin')
 );
 
