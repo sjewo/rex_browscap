@@ -107,7 +107,7 @@ $REX["ADDON"]["_rex_browscap"]["settings"] = array (
 
 // SUBPAGES
 //////////////////////////////////////////////////////////////////////////////
-if ($REX['USER'] && ($REX['USER']->isAdmin() || $REX['USER']->hasPerm($mypage.'[]')))
+if(isset($REX['USER']) && ($REX['USER']->isAdmin() || $REX['USER']->hasPerm($mypage.'[]')))
 {
   $REX['ADDON'][$mypage]['SUBPAGES'] = array (
     //     subpage    ,label                         ,perm   ,params               ,attributes
