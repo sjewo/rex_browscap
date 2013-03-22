@@ -49,11 +49,16 @@ function rex_browscap_screen_sniff(forced){                                     
     }
   }                                                                             console.log('doing screen sniffing..');
   var data = {};
-  data.display_width = screen.width;
-  data.display_height = screen.height;
-  var w=window,d=document,e=d.documentElement,g=d.getElementsByTagName("body")[0],x=w.innerWidth||e.clientWidth||g.clientWidth,y=w.innerHeight||e.clientHeight||g.clientHeight;
-  data.viewport_width = x;
-  data.viewport_height = y;
+  data.display_width = screen.width;                                            console.log('display_width: '+data.display_width);
+  data.display_height = screen.height;                                          console.log('display_height: '+data.display_height);
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName("body")[0],
+      x = w.innerWidth||e.clientWidth||g.clientWidth,
+      y = w.innerHeight||e.clientHeight||g.clientHeight;
+  data.viewport_width = x;                                                      console.log('viewport_width: '+x);
+  data.viewport_height = y;                                                     console.log('viewport_height: '+y);
   data.landscape = data.viewport_width>data.viewport_height ? true : false;
 
   rex_browscap_cookies(data);
