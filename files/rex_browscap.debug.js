@@ -18,7 +18,7 @@ function rex_browscap_cookies(data){                                            
   document.cookie="rex_browscap_cookies_set=true; path=/";                      console.groupEnd();
 }
 
-function rex_browscap_callback(data,async){
+function rex_browscap_callback(data,async){                                     console.group('rex_browscap_callback()');console.log('action: '+data.action);async=false;
     var xmlhttp = null;
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();
@@ -27,7 +27,7 @@ function rex_browscap_callback(data,async){
     }
     xmlhttp.open('POST', 'index.php', async);
     xmlhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xmlhttp.send('rex_browscap='+JSON.stringify(data));
+    xmlhttp.send('rex_browscap='+JSON.stringify(data));                         console.log('return:'+xmlhttp.responseText);console.groupEnd();
     return xmlhttp.responseText;
 }
 
@@ -62,8 +62,8 @@ function rex_browscap_screen_sniff(forced){                                     
   data.landscape = data.viewport_width>data.viewport_height ? true : false;
 
   rex_browscap_cookies(data);
-  data.action = 'store_to_session';                                             console.log('doing backend callback..');console.groupEnd();
-  rex_browscap_callback(data,true);
+  data.action = 'store_to_session';
+  rex_browscap_callback(data,true);                                             console.groupEnd();
 }
 
 // http://stackoverflow.com/a/4541963/668767

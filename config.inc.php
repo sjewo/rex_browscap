@@ -20,7 +20,7 @@ if($data!==false)
   $data = json_decode(stripslashes($data),true);                                #FB::log($data,' $data'); FB::log($_SESSION,' $_SESSION');FB::log($_COOKIE,' $_COOKIE'); FB::log(session_id(),' session_id()'); #die;
 
   if(!is_array($data)) {
-    return rex_panel_ajax_reply(array('error'=>'no valid POST data'));
+    return rex_browscap_ajax_reply(array('error'=>'no valid POST data'));
   }
 
   switch($data['action'])
@@ -32,6 +32,7 @@ if($data!==false)
         }
       }                                                                         #FB::log($_SESSION,' $_SESSION');
                                                                                 #FB::groupEnd();
+      return rex_browscap_ajax_reply(array('msg'=>'ok'));
       die;
       break;
 
@@ -46,7 +47,7 @@ if($data!==false)
 
     default:
                                                                                 #FB::groupEnd();
-     return rex_panel_ajax_reply(array('error'=>'no valid action defined'));
+     return rex_browscap_ajax_reply(array('error'=>'no valid action defined'));
      break;
   }
 
@@ -106,7 +107,7 @@ $REX['ADDON'][$mypage]['params_cast'] = array (
 ////////////////////////////////////////////////////////////////////////////////
 // --- DYN
 $REX["ADDON"]["_rex_browscap"]["settings"] = array (
-  'frontend_js_include' => '1',
+  'frontend_js_include' => '2',
   'use_mobiledetect' => '1',
 );
 // --- /DYN
