@@ -34,8 +34,11 @@ if($data!==false)
       die;
       break;
 
-    case 'rex_get_browser':
-      return rex_browscap_ajax_reply($_SESSION['rex_get_browser']);             #FB::log($_SESSION,' $_SESSION');
+    case 'rex_get_browser':                                                     #FB::log($_SESSION,' $_SESSION');
+      $data = isset($_SESSION['rex_get_browser'])
+            ? $_SESSION['rex_get_browser']
+            : array('error'=>'$_SESSION["rex_get_browser"] not available..');
+      return rex_browscap_ajax_reply($data);
       die;
       break;
 
@@ -100,7 +103,7 @@ $REX['ADDON'][$mypage]['params_cast'] = array (
 ////////////////////////////////////////////////////////////////////////////////
 // --- DYN
 $REX["ADDON"]["_rex_browscap"]["settings"] = array (
-  'frontend_js_include' => '1',
+  'frontend_js_include' => '2',
   'use_mobiledetect' => '1',
 );
 // --- /DYN

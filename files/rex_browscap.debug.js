@@ -38,7 +38,8 @@ function rex_browscap_inited(){
 function rex_get_browser(){
   data = {};
   data.action = 'rex_get_browser';
-  return JSON.parse(rex_browscap_callback(data,false));
+  json_return = rex_browscap_callback(data,false);                              console.log('json_return: '+json_return);
+  return JSON.parse(json_return);
 }
 
 function rex_browscap_screen_sniff(forced){                                     console.log('sniffing forced: '+forced);
