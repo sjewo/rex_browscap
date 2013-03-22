@@ -155,9 +155,13 @@ if($REX['REDAXO']){
 ////////////////////////////////////////////////////////////////////////////////
 if($REX["ADDON"]["_rex_browscap"]["settings"]['frontend_js_include']!=='0')
 {
+  $js_file = $REX["ADDON"]["_rex_browscap"]["settings"]['frontend_js_include'] == '1'
+           ? 'rex_browscap.min.js'
+           : 'rex_browscap.debug.js';
+
   $rex_browscap_frontend_js = '
   <!-- '.$mypage.' -->
-    <script src="'.$REX['HTDOCS_PATH'].'files/addons/'.$mypage.'/rex_browscap.min.js" type="text/javascript"></script>
+    <script src="'.$REX['HTDOCS_PATH'].'files/addons/'.$mypage.'/'.$js_file.'" type="text/javascript"></script>
   <!-- /'.$mypage.' -->';
 
   rex_register_extension('OUTPUT_FILTER', 'rex_browscap_frontend_opf');

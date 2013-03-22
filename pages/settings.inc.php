@@ -72,6 +72,7 @@ $tmp->setSize(1);
 $tmp->setName('frontend_js_include');
 $tmp->addOption('Kein Include',0);
 $tmp->addOption('Automatisch nach head bzw. base tag',1);
+$tmp->addOption('Automatisch (debug JS)',2);
 $tmp->setSelected($REX['ADDON'][$mypage]['settings']['frontend_js_include']);
 $frontend_js_include = $tmp->get();
 
