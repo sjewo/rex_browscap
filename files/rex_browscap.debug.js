@@ -10,12 +10,12 @@
  */
 
 
-function rex_browscap_cookies(data){                                            console.log('setting cookies..');
+function rex_browscap_cookies(data){                                            console.group('rex_browscap_screen_sniff()');console.log('setting cookies..');
   document.cookie="display_width="+data.display_width+"; path=/";
   document.cookie="display_height="+data.display_height+"; path=/";
   document.cookie="viewport_width="+data.viewport_width+"; path=/";
   document.cookie="viewport_height="+data.viewport_height+"; path=/";
-  document.cookie="rex_browscap_cookies_set=true; path=/";
+  document.cookie="rex_browscap_cookies_set=true; path=/";                      console.groupEnd();
 }
 
 function rex_browscap_callback(data,async){
@@ -38,11 +38,11 @@ function rex_browscap_inited(){
 function rex_get_browser(){
   data = {};
   data.action = 'rex_get_browser';
-  json_return = rex_browscap_callback(data,false);                              console.log('json_return: '+json_return);
+  json_return = rex_browscap_callback(data,false);
   return JSON.parse(json_return);
 }
 
-function rex_browscap_screen_sniff(forced){                                     console.log('sniffing forced: '+forced);
+function rex_browscap_screen_sniff(forced){                                     console.group('rex_browscap_screen_sniff()');console.log('sniffing forced: '+forced);
   if(!forced){
     if(rex_browscap_inited()){                                                  console.log('rex_browscap_cookies_set: true');
       return false;
@@ -62,7 +62,7 @@ function rex_browscap_screen_sniff(forced){                                     
   data.landscape = data.viewport_width>data.viewport_height ? true : false;
 
   rex_browscap_cookies(data);
-  data.action = 'store_to_session';                                             console.log('doing backend callback..');
+  data.action = 'store_to_session';                                             console.log('doing backend callback..');console.groupEnd();
   rex_browscap_callback(data,true);
 }
 

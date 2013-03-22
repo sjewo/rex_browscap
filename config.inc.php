@@ -10,14 +10,14 @@
  *
  * @package redaxo 4.3.x/4.4.x/4.5.x
  */
-
+                                                                                #FB::log($_SESSION,'PRE AJAX RECEIVER API $_SESSION');
 // AJAX RECEIVER/API
 ////////////////////////////////////////////////////////////////////////////////
 $data = rex_request('rex_browscap','string',false);
 
 if($data!==false)
-{
-  $data = json_decode(stripslashes($data),true);                                #FB::log($data,' $data'); die;
+{                                                                               #FB::group('config.inc.php AJAX receiver', array("Collapsed"=>false));
+  $data = json_decode(stripslashes($data),true);                                #FB::log($data,' $data'); FB::log($_SESSION,' $_SESSION');FB::log($_COOKIE,' $_COOKIE'); FB::log(session_id(),' session_id()'); #die;
 
   if(!is_array($data)) {
     return rex_panel_ajax_reply(array('error'=>'no valid POST data'));
@@ -25,24 +25,27 @@ if($data!==false)
 
   switch($data['action'])
   {
-    case 'store_to_session':
+    case 'store_to_session':                                                    #FB::group('AJAX store_to_session', array("Collapsed"=>false));
       foreach($data as $k => $v){
         if($k!='action'){
-          $_SESSION['rex_get_browser'][$k] = $v;
+          $_SESSION['rex_get_browser_frontend_data'][$k] = $v;
         }
       }                                                                         #FB::log($_SESSION,' $_SESSION');
+                                                                                #FB::groupEnd();
       die;
       break;
 
-    case 'rex_get_browser':                                                     #FB::log($_SESSION,' $_SESSION');
+    case 'rex_get_browser':                                                     #FB::group('AJAX rex_get_browser', array("Collapsed"=>false));FB::log($_SESSION,' $_SESSION');
       $data = isset($_SESSION['rex_get_browser'])
             ? $_SESSION['rex_get_browser']
             : array('error'=>'$_SESSION["rex_get_browser"] not available..');
+                                                                                #FB::groupEnd();
       return rex_browscap_ajax_reply($data);
       die;
       break;
 
     default:
+                                                                                #FB::groupEnd();
      return rex_panel_ajax_reply(array('error'=>'no valid action defined'));
      break;
   }
@@ -65,7 +68,7 @@ function rex_browscap_ajax_reply($data=false)
     die();
   }
 }
-
+                                                                                #FB::log($_SESSION,'POST AJAX RECEIVER API $_SESSION');
 
 // IDENTIFIER & ROOT
 ////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +106,7 @@ $REX['ADDON'][$mypage]['params_cast'] = array (
 ////////////////////////////////////////////////////////////////////////////////
 // --- DYN
 $REX["ADDON"]["_rex_browscap"]["settings"] = array (
-  'frontend_js_include' => '2',
+  'frontend_js_include' => '1',
   'use_mobiledetect' => '1',
 );
 // --- /DYN
@@ -176,3 +179,5 @@ if($REX["ADDON"]["_rex_browscap"]["settings"]['frontend_js_include']!=='0')
     return str_replace($needle,$needle.$rex_browscap_frontend_js,$params['subject']);
   }
 }
+
+                                                                                #FB::log($_SESSION,' END OF CONFIG $_SESSION');
