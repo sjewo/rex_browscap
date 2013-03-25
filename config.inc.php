@@ -10,7 +10,47 @@
  *
  * @package redaxo 4.3.x/4.4.x/4.5.x
  */
-                                                                                #FB::log($_SESSION,'PRE AJAX RECEIVER API $_SESSION');
+
+// IDENTIFIER & ROOT
+////////////////////////////////////////////////////////////////////////////////
+$mypage = '_rex_browscap';
+$myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/';
+
+
+// REX ADDON PARAMS
+////////////////////////////////////////////////////////////////////////////////
+$REX['ADDON']['rxid'][$mypage]        = '714';
+$REX['ADDON']['name'][$mypage]        = 'RexBrowscap';
+$REX['ADDON']['version'][$mypage]     = '1.0.0';
+$REX['ADDON']['author'][$mypage]      = 'rexdev.de';
+$REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
+$REX['ADDON']['perm'][$mypage]   	    = $mypage."[]";
+$REX['PERM'][] = $mypage.'[]';
+
+
+// FIXED SETTINGS
+////////////////////////////////////////////////////////////////////////////////
+$REX['ADDON'][$mypage]['cache'] = $REX['HTDOCS_PATH'].'files/addons/_rex_browscap/cache';
+$REX['ADDON'][$mypage]['silent'] = true;
+$REX['ADDON'][$mypage]['userAgent'] = 'Redaxo Browscap Addon - version '.$REX['ADDON']['version'][$mypage];
+$REX['ADDON'][$mypage]['params_cast'] = array (
+  'page'        => 'unset',
+  'subpage'     => 'unset',
+  'minorpage'   => 'unset',
+  'func'        => 'unset',
+  'submit'      => 'unset',
+  'sendit'      => 'unset',
+  'PHPSESSID'   => 'unset',
+  );
+
+// USER SETTINGS
+////////////////////////////////////////////////////////////////////////////////
+// --- DYN
+$REX["ADDON"]["_rex_browscap"]["settings"] = array (
+  'frontend_js_include' => '1',
+  'use_mobiledetect' => '1',
+);
+// --- /DYN
 
 // REQUIRE LIBS BY PHP VERSION
 ////////////////////////////////////////////////////////////////////////////////
@@ -65,10 +105,10 @@ if($data!==false)
       die;
       break;
 
-    case 'rex_get_browser':                                                     #FB::group('AJAX rex_get_browser', array("Collapsed"=>false));FB::log($_SESSION,' $_SESSION');
+    case 'rex_get_browser':                                                     #FB::group('AJAX rex_get_browser', array("Collapsed"=>false));#FB::log($_SESSION,' $_SESSION');
       if(!isset($_SESSION['rex_get_browser'])){
-        $data = rex_get_browser();
-      }
+        $data = rex_get_browser();         FB::log($data,' $data');
+      }FB::log($data,' $data');
                                                                                 #FB::groupEnd();
       return rex_browscap_ajax_reply($data);
       die;
@@ -98,48 +138,6 @@ function rex_browscap_ajax_reply($data=false)
     die();
   }
 }
-                                                                                #FB::log($_SESSION,'POST AJAX RECEIVER API $_SESSION');
-
-// IDENTIFIER & ROOT
-////////////////////////////////////////////////////////////////////////////////
-$mypage = '_rex_browscap';
-$myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/';
-
-
-// REX ADDON PARAMS
-////////////////////////////////////////////////////////////////////////////////
-$REX['ADDON']['rxid'][$mypage]        = '714';
-$REX['ADDON']['name'][$mypage]        = 'RexBrowscap';
-$REX['ADDON']['version'][$mypage]     = '1.0.0';
-$REX['ADDON']['author'][$mypage]      = 'rexdev.de';
-$REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
-$REX['ADDON']['perm'][$mypage]   	    = $mypage."[]";
-$REX['PERM'][] = $mypage.'[]';
-
-
-// FIXED SETTINGS
-////////////////////////////////////////////////////////////////////////////////
-$REX['ADDON'][$mypage]['cache'] = $REX['HTDOCS_PATH'].'files/addons/_rex_browscap/cache';
-$REX['ADDON'][$mypage]['silent'] = true;
-$REX['ADDON'][$mypage]['userAgent'] = 'Redaxo Browscap Addon - version '.$REX['ADDON']['version'][$mypage];
-$REX['ADDON'][$mypage]['params_cast'] = array (
-  'page'        => 'unset',
-  'subpage'     => 'unset',
-  'minorpage'   => 'unset',
-  'func'        => 'unset',
-  'submit'      => 'unset',
-  'sendit'      => 'unset',
-  'PHPSESSID'   => 'unset',
-  );
-
-// USER SETTINGS
-////////////////////////////////////////////////////////////////////////////////
-// --- DYN
-$REX["ADDON"]["_rex_browscap"]["settings"] = array (
-  'frontend_js_include' => '0',
-  'use_mobiledetect' => '1',
-);
-// --- /DYN
 
 // SUBPAGES
 //////////////////////////////////////////////////////////////////////////////
