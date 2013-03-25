@@ -11,6 +11,35 @@
  * @package redaxo 4.3.x/4.4.x/4.5.x
  */
                                                                                 #FB::log($_SESSION,'PRE AJAX RECEIVER API $_SESSION');
+
+// REQUIRE LIBS BY PHP VERSION
+////////////////////////////////////////////////////////////////////////////////
+$phpversion = intval(PHP_VERSION);
+
+switch($phpversion)
+{
+  case ($phpversion<4):
+    rex_warning('Mindestens PHP4 benötigt!');
+    break;
+
+  case ($phpversion<5):
+    // VERSION FÜR PHP 4
+    rex_warning('Die PHP4 Version ist deprecated!');
+    require_once('vendor/phpbrowscap/php4/Browscap.php');
+    break;
+
+  default:
+    // VERSION FÜR PHP 5
+    require_once('vendor/phpbrowscap/php5/Browscap.php');
+    break;
+}
+
+require_once('vendor/mobiledetect/Mobile_Detect.php');
+
+// REQUIRE REX_GET_BROWSER FUNCTION
+////////////////////////////////////////////////////////////////////////////////
+require_once('functions/function.rex_get_browser.inc.php');
+
 // AJAX RECEIVER/API
 ////////////////////////////////////////////////////////////////////////////////
 $data = rex_request('rex_browscap','string',false);
@@ -37,9 +66,9 @@ if($data!==false)
       break;
 
     case 'rex_get_browser':                                                     #FB::group('AJAX rex_get_browser', array("Collapsed"=>false));FB::log($_SESSION,' $_SESSION');
-      $data = isset($_SESSION['rex_get_browser'])
-            ? $_SESSION['rex_get_browser']
-            : array('error'=>'$_SESSION["rex_get_browser"] not available..');
+      if(!isset($_SESSION['rex_get_browser'])){
+        $data = rex_get_browser();
+      }
                                                                                 #FB::groupEnd();
       return rex_browscap_ajax_reply($data);
       die;
@@ -107,7 +136,7 @@ $REX['ADDON'][$mypage]['params_cast'] = array (
 ////////////////////////////////////////////////////////////////////////////////
 // --- DYN
 $REX["ADDON"]["_rex_browscap"]["settings"] = array (
-  'frontend_js_include' => '2',
+  'frontend_js_include' => '0',
   'use_mobiledetect' => '1',
 );
 // --- /DYN
@@ -122,34 +151,6 @@ if(isset($REX['USER']) && ($REX['USER']->isAdmin() || $REX['USER']->hasPerm($myp
     array ('help'     ,'Hilfe'                       ,''     ,''                   ,''),
   );
 }
-
-// REQUIRE LIBS BY PHP VERSION
-////////////////////////////////////////////////////////////////////////////////
-$phpversion = intval(PHP_VERSION);
-
-switch($phpversion)
-{
-  case ($phpversion<4):
-    rex_warning('Mindestens PHP4 benötigt!');
-    break;
-
-  case ($phpversion<5):
-    // VERSION FÜR PHP 4
-    rex_warning('Die PHP4 Version ist deprecated!');
-    require_once('vendor/phpbrowscap/php4/Browscap.php');
-    break;
-
-  default:
-    // VERSION FÜR PHP 5
-    require_once('vendor/phpbrowscap/php5/Browscap.php');
-    break;
-}
-
-require_once('vendor/mobiledetect/Mobile_Detect.php');
-
-// REQUIRE REX_GET_BROWSER FUNCTION
-////////////////////////////////////////////////////////////////////////////////
-require_once('functions/function.rex_get_browser.inc.php');
 
 
 // EXIT HERE IF BACKEND..
