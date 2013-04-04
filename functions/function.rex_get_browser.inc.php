@@ -22,9 +22,13 @@ function rex_get_browser($user_agent = null, $return_array = true)
     session_start();
   }
 
-  if(isset($_SESSION['rex_get_browser']['browser_name'])){                      #FB::log('OK, FROM SESSION...');FB::groupEnd();
-    if(!isset($_SESSION['rex_get_browser']['landscape']) && isset($_SESSION['rex_get_browser_frontend_data'])){
-      $_SESSION['rex_get_browser'] = array_merge($_SESSION['rex_get_browser_frontend_data'],$_SESSION['rex_get_browser']);
+  // CHECK IF BACKEND DATA ALREADY IN SESSION
+  if(isset($_SESSION['rex_get_browser']['browser_name']))
+  {                                                                             #FB::log('OK, FROM SESSION...');FB::groupEnd();
+    // CHECK IF FRONTEND DATA ALREADY IN SESSION & AVAILABLE
+    if(!isset($_SESSION['rex_get_browser']['landscape']) && rex_browscap_get_frontend_data() !== false)
+    {
+      $_SESSION['rex_get_browser'] = array_merge(rex_browscap_get_frontend_data(),$_SESSION['rex_get_browser']);
     }
     return $_SESSION['rex_get_browser'];
   }
@@ -35,8 +39,8 @@ function rex_get_browser($user_agent = null, $return_array = true)
 
   // USE TEMP URLS WHILE BROWSCAP PROJECT IS MIGRATING
   // https://github.com/GaretJax/phpbrowscap/issues/24#issuecomment-10088419
-  $bc->remoteIniUrl = 'http://tempdownloads.browserscap.com/stream.php?BrowsCapINI';
-  $bc->remoteVerUrl = 'http://tempdownloads.browserscap.com/versions/version-date.php';
+  $bc->remoteIniUrl = $REX['ADDON']['_rex_browscap']['remoteIniUrl'];
+  $bc->remoteVerUrl = $REX['ADDON']['_rex_browscap']['remoteVerUrl'];
 
   $browser = $bc->getBrowser($user_agent, $return_array);                       #FB::log($browser,' $browser');
 
@@ -51,6 +55,28 @@ function rex_get_browser($user_agent = null, $return_array = true)
   $_SESSION['rex_get_browser'] = $browser;                                      #FB::log($_SESSION,' $_SESSION');
                                                                                 #FB::groupEnd();
   return $browser;
+}
+
+
+function rex_browscap_get_frontend_data()
+{
+  if(isset($_SESSION['rex_get_browser_frontend_data']))
+  {
+    return $_SESSION['rex_get_browser_frontend_data'];
+  }
+  elseif(isset($_COOKIES['rex_browscap_cookies_set']))
+  {
+    return array('display_width'   => $_COOKIES['display_width'],
+                 'display_height'  => $_COOKIES['display_height'],
+                 'viewport_width'  => $_COOKIES['viewport_width'],
+                 'viewport_height' => $_COOKIES['viewport_height'],
+                 'landscape'       => ($_COOKIES['viewport_height'] > $_COOKIES['viewport_width'])
+                 );
+  }
+  else
+  {
+    return false;
+  }
 }
 
 

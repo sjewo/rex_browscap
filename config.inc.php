@@ -33,6 +33,8 @@ $REX['PERM'][] = $mypage.'[]';
 $REX['ADDON'][$mypage]['cache'] = $REX['HTDOCS_PATH'].'files/addons/_rex_browscap/cache';
 $REX['ADDON'][$mypage]['silent'] = true;
 $REX['ADDON'][$mypage]['userAgent'] = 'Redaxo Browscap Addon - version '.$REX['ADDON']['version'][$mypage];
+$REX['ADDON'][$mypage]['remoteIniUrl'] = 'http://tempdownloads.browserscap.com/stream.php?BrowsCapINI';
+$REX['ADDON'][$mypage]['remoteVerUrl'] = 'http://tempdownloads.browserscap.com/versions/version-date.php';
 $REX['ADDON'][$mypage]['params_cast'] = array (
   'page'        => 'unset',
   'subpage'     => 'unset',
@@ -107,8 +109,8 @@ if($data!==false)
 
     case 'rex_get_browser':                                                     #FB::group('AJAX rex_get_browser', array("Collapsed"=>false));#FB::log($_SESSION,' $_SESSION');
       if(!isset($_SESSION['rex_get_browser'])){
-        $data = rex_get_browser();         FB::log($data,' $data');
-      }FB::log($data,' $data');
+        $data = rex_get_browser();                                              #FB::log($data,' $data');
+      }
                                                                                 #FB::groupEnd();
       return rex_browscap_ajax_reply($data);
       die;
