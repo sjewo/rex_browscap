@@ -21,7 +21,7 @@ $myroot = $REX['INCLUDE_PATH'].'/addons/'.$mypage.'/';
 ////////////////////////////////////////////////////////////////////////////////
 $REX['ADDON']['rxid'][$mypage]        = '714';
 $REX['ADDON']['name'][$mypage]        = 'RexBrowscap';
-$REX['ADDON']['version'][$mypage]     = '1.0.0';
+$REX['ADDON']['version'][$mypage]     = '1.1.0';
 $REX['ADDON']['author'][$mypage]      = 'rexdev.de';
 $REX['ADDON']['supportpage'][$mypage] = 'forum.redaxo.de';
 $REX['ADDON']['perm'][$mypage]   	    = $mypage."[]";
