@@ -64,13 +64,13 @@ function rex_browscap_get_frontend_data()
   {
     return $_SESSION['rex_get_browser_frontend_data'];
   }
-  elseif(isset($_COOKIES['rex_browscap_cookies_set']))
+  elseif(isset($_COOKIE['rex_browscap_COOKIE_set']))
   {
-    return array('display_width'   => $_COOKIES['display_width'],
-                 'display_height'  => $_COOKIES['display_height'],
-                 'viewport_width'  => $_COOKIES['viewport_width'],
-                 'viewport_height' => $_COOKIES['viewport_height'],
-                 'landscape'       => ($_COOKIES['viewport_height'] > $_COOKIES['viewport_width'])
+    return array('display_width'   => $_COOKIE['display_width'],
+                 'display_height'  => $_COOKIE['display_height'],
+                 'viewport_width'  => $_COOKIE['viewport_width'],
+                 'viewport_height' => $_COOKIE['viewport_height'],
+                 'landscape'       => ($_COOKIE['viewport_height'] > $_COOKIE['viewport_width'])
                  );
   }
   else
