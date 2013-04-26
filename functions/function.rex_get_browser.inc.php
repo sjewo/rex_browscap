@@ -64,7 +64,7 @@ function rex_browscap_get_frontend_data()
   {
     return $_SESSION['rex_get_browser_frontend_data'];
   }
-  elseif(isset($_COOKIE['rex_browscap_COOKIE_set']))
+  elseif(isset($_COOKIE['rex_browscap_cookies_set']))
   {
     return array('display_width'   => $_COOKIE['display_width'],
                  'display_height'  => $_COOKIE['display_height'],
